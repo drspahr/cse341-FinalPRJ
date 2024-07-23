@@ -18,11 +18,11 @@ const getAllItems = async (req, res) => {
 // GET ALL RECORDS IN A GIVEN CATEGORY
 const getItemsByCat = async (req, res) => {
     //#swagger.tags=['Groceries']
-    const grocCat = new ObjectId(req.params.category);
+    const grocCat = req.params.category;
     const result = await mongodb.getDb().db().collection('groceries').find({category: grocCat});
     result.toArray().then((items) => {
         res.setHeader('Contents-Type', 'application/json');
-        res.send(200).json(items);
+        res.status(200).json(items);
     });
 }
 
@@ -51,7 +51,7 @@ const updateItem = async (req, res) => {
         itemDescription: req.body.itemDescription,
         price: req.body.price,
     };
-    const response = await mongodb.getDb().db().collection('groceries').replaceOne({_id: itemId, item});
+    const response = await mongodb.getDb().db().collection('groceries').replaceOne({_id: itemId}, item);
     if (response.modifiedCount > 0) {
         res.status(204).send();
     } else {
@@ -69,4 +69,12 @@ const deleteItem = async (req, res) => {
     } else {
         res.status(500).json(response.error || 'Some error occured while deleting record');
     }
+}
+
+module.exports = {
+    getAllItems,
+    getItemsByCat,
+    addItem,
+    updateItem,
+    deleteItem,
 }

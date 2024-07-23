@@ -1,6 +1,6 @@
 // APPLICATION CONTROL FILE
 const express = require('express');
-const mongodb = require('./modules/db');
+const mongodb = require('./data/db');
 const bodyParser = require('body-parser');
 const passport = require('passport');
 const session = require('express-session');
@@ -37,15 +37,15 @@ app.use(cors({methods:['GET', 'POST', 'DELETE', 'UPDATE', 'PUT', 'PATCH']}));
 app.use(cors({origin: '*'}));
 app.use('/', require('./routes'));
 
-passport.use(new GitHubStrategy({
-    clientID: process.env.GITHUB_CLIENT_ID,
-    clientSecret: process.env.GITHUB_CLIENT_SECRET,
-    callbackURL: process.env.CALLBACKURL
-},
-function(accessToken, refreshToken, profile, done){
-    return done(null, profile);
-}
-));
+// passport.use(new GitHubStrategy({
+//     clientID: process.env.GITHUB_CLIENT_ID,
+//     clientSecret: process.env.GITHUB_CLIENT_SECRET,
+//     callbackURL: process.env.CALLBACKURL
+// },
+// function(accessToken, refreshToken, profile, done){
+//     return done(null, profile);
+// }
+// ));
 
 passport.serializeUser((user, done) => {
     done(null, user);

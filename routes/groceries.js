@@ -14,10 +14,10 @@ router.get('/item', grocController.getAllItems);
 router.get('/item/:category', grocController.getItemsByCat);
 
 // POST Item to groceries collection
-router.post('/item', grocController.addItem);
+router.post('/item', validate.saveGroceryItemValidate, grocController.addItem);
 
 // UPDATE Item by category in groceries collection
-router.put('/item/:id', grocController.updateItem);
+router.put('/item/:id', validate.saveGroceryItemValidate, grocController.updateItem);
 
 // DELETE Item by id in groceries collection
 router.delete('/item/:id', grocController.deleteItem);

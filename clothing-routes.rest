@@ -1,0 +1,28 @@
+// CLOTHING ROUTES
+
+### GET ALL CLOTHING RECORDS
+GET http://localhost:3000/clothing/item
+
+### GET CLOTHING RECORD BY ID
+GET http://localhost:3000/clothing/item/6695e5f2c034f608025ce205
+
+### POST NEW CLOTHING RECORD
+POST http://localhost:3000/clothing/item HTTP/1.1
+content-type: application/json
+
+{
+    "item": "DELETE",
+    "price": "$15.00"
+}
+
+### UPDATE RECORD BY ID
+PUT http://localhost:3000/clothing/item/6695e5f2c034f608025ce205 HTTP/1.1
+content-type: application/json
+
+{
+    "item": "Levi Jeans",
+    "price": "$25"
+}
+
+### DELETE CLOTHING RECORD
+DELETE http://localhost:3000/clothing/item/6695f40fdd21e112e8586444 HTTP/1.1
