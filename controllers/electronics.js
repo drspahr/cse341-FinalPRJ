@@ -8,6 +8,7 @@ const ObjectId = require('mongodb').ObjectId;
 
 // GET ONE ITEM IN THE ELECTRONICS INVENTORY
 const getOneInventItem = async (req, res) => {
+    //#swagger.tags=['Electronics']
     const result = await mongodb.getDb().db().collection('electronics').find()
     result.toArray().then((electronics) => {
         res.setHeader('Content-Type', 'application/json');
@@ -17,6 +18,7 @@ const getOneInventItem = async (req, res) => {
 
 // GET MULTIPLE ITEMS IN THE ELECTRONICS INVENTORY
 const getMultiInventItems = async (req, res) => {
+    //#swagger.tags=['Electronics']
     const electId = new ObjectId(req.params.id)
     const result = await mongodb.getDb().db().collection('electronics').find()
     result.toArray().then((electronics) => {
@@ -27,6 +29,7 @@ const getMultiInventItems = async (req, res) => {
 
 // GET ELECTRONICS INVENTORY ITEM BY CATEGORY
 const getInventByCat = async (req, res) => {
+    //#swagger.tags=['Electronics']
     const inventCat = new ObjectId(req.params.category)
     const result = await mongodb.getDb().db().collection('electronics').find({category: inventCat});
     result.toArray.then((electronics) => {
@@ -36,6 +39,7 @@ const getInventByCat = async (req, res) => {
 }
 
 const addInvent = async (req, res) => {
+    //#swagger.tags=['Electronics']
     const inventId = new ObjectId(req.params.id);
     const invent = {
         type: req.body.type,
@@ -52,6 +56,7 @@ const addInvent = async (req, res) => {
 };
 
 const updateInvent = async (req, res) => {
+    //#swagger.tags=['Electronics']
     const inventId = new ObjectId(req.params.id);
     const invent = {
         type: req.body.type,
@@ -67,6 +72,7 @@ const updateInvent = async (req, res) => {
 };
 
 const deleteInvent = async (req, res) => {
+    //#swagger.tags=['Electronics']
     const inventId = new ObjectId(req.params.id);
     const invent = await mongodb.getDatabase().db().collection('electronics').remove({_id: inventId}, true)
     if (response.modifiedCount > 0) {

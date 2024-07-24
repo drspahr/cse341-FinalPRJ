@@ -7,7 +7,7 @@ const express = require('express');
 const router = express.Router();
 const elecController = require('../controllers/electronics');
 const validate = require('../middleware/validate');
-const {isAuthenticate} = require('../middleware/authenticate');
+const {isAuthenticated} = require('../middleware/authenticate');
 
 // GET routes
 router.get('/inventory', elecController.getOneInventItem);
@@ -15,10 +15,10 @@ router.get('/inventory/:id', elecController.getOneInventItem);
 router.get('/inventory/:id', elecController.getMultiInventItems);
 
 // POST route
-// router.post('/inventory', isAuthenticate, elecController.addInvent);
+router.post('/inventory', isAuthenticated, elecController.addInvent);
 // PUT route
-// router.put('/inventory/:id', isAuthenticate, elecController.updateInvent);
+router.put('/inventory/:id', isAuthenticated, elecController.updateInvent);
 // DELETE route
-// router.delete('/inventory/:id', isAuthenticate, elecController.deleteInvent);
+router.delete('/inventory/:id', isAuthenticated, elecController.deleteInvent);
 
 module.exports = router;

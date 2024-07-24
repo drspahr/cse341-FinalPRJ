@@ -7,6 +7,7 @@
 
 // GET ONE USER
 const getOneUser = async(req, res) => {
+    //#swagger.tags=['Users']
     const result = await mongodb.getDb().db().collection('usermanageme').find();
     result.toArray().then((users) => {
         res.setHeader('Content-Type', 'application/json');
@@ -15,6 +16,7 @@ const getOneUser = async(req, res) => {
 };
 // GET ALL USERS
 const getMultiUsers = async (req, res) => {
+    //#swagger.tags=['Users']
     const result = await mongodb.getDb().db().collection('usermanage').find();
     result.toArray().then((users) => {
         res.setHeader('Content-Type', 'application/json');
@@ -23,6 +25,7 @@ const getMultiUsers = async (req, res) => {
 };
 
 const addUser = async (req, res) => {
+    //#swagger.tags=['Users']
     const user = {
         firstname: req.body.firstname,
         lastname: req.body.lastname,
@@ -38,6 +41,7 @@ const addUser = async (req, res) => {
 };
 
 const updateUserbyId = async (req, res) => {
+    //#swagger.tags=['Users']
     const userId = new ObjectId(req.params.id);
     const user = {
         firstname: req.body.firstname,
@@ -54,6 +58,7 @@ const updateUserbyId = async (req, res) => {
 };
 
 const deleteUser = async (req, res) => {
+    //#swagger.tags=['Users']
     const userId = new ObjectId(req.params.id);
     const response = await mongodb.getDb().db().collection('usermanage').deleteOne({ _id: userId });
     if (response.deletedCount > 0) {
